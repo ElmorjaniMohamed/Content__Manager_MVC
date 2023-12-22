@@ -1,63 +1,55 @@
 <?php
-use app\Models\Team;
+// TeamController.php
+namespace App\Controllers;
+use App\Controllers\Controller;
+use App\Models\Entities\FootballTeam;
 
-require_once ("../Models/Team.php");
 
-class ControllerTeam {
+class TeamController extends Controller
+{
+    private $footballTeam;
 
-    private $team;
-
-    public function __construct(Team $team)
+    public function __construct($db)
     {
-        $this->team = $team;
+        parent::__construct();
+        $this->footballTeam = new FootballTeam($this->$db);
     }
 
-    public function createTeam(array $data)
+    public function createTeam($data)
     {
-        $team = new Team(null, $data['name'], $data['description'], null, null);
-        $result = $this->team->create($data);
-
-        if ($result) {
+        if ($this->footballTeam->create($data)) {
             echo 'Équipe créée avec succès!';
         } else {
             echo 'Erreur lors de la création de l\'équipe.';
         }
     }
 
-    public function updateTeam(int $id, array $data)
+    public function updateTeam($id, $data)
     {
-        $result = $this->team->update($id, $data);
-
-        if ($result) {
+        if ($this->footballTeam->update($id, $data)) {
             echo 'Équipe mise à jour avec succès!';
         } else {
             echo 'Erreur lors de la mise à jour de l\'équipe.';
         }
     }
 
-    public function deleteTeam(int $id)
+    public function deleteTeam($id)
     {
-        $result = $this->team->delete($id);
-
-        if ($result) {
+        if ($this->footballTeam->delete($id)) {
             echo 'Équipe supprimée avec succès!';
         } else {
             echo 'Erreur lors de la suppression de l\'équipe.';
         }
     }
 
-    public function readTeam(int $id)
+    public function readTeam($id)
     {
-        $result = $this->team->read($id);
+        $teamData = $this->footballTeam->read($id);
 
-        if ($result) {
-            print_r($result);
+        if ($teamData) {
+            print_r($teamData);
         } else {
             echo 'Équipe non trouvée.';
         }
     }
 }
-
-// Exemple d'utilisation
-$controllerTeam = new ControllerTeam(new Team(null, null, null, null, null));
-$controllerTeam->createTeam(['name' => 'Nouvelle équipe', 'description' => 'Description de la nouvelle équipe']);
