@@ -27,6 +27,7 @@ class Model
 
             $query = "INSERT INTO {$this->table} ({$columns}) VALUES ({$values})";
             $this->logQuery($query);
+            var_dump($query);
 
             $stmt = $this->db->prepare($query);
 
@@ -36,6 +37,7 @@ class Model
 
             return $stmt->execute();
         } catch (PDOException $e) {
+            echo 'Error: ' . $e->getMessage(); 
             $this->logError($e);
             return false;
         }

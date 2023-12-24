@@ -4,3 +4,8 @@
 
 # Dotenv environment file
 .env
+
+# Tailwind
+package-lock.json
+node_modules/
+dist/

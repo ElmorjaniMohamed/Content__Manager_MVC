@@ -1,6 +1,7 @@
 <?php
-// Models/TeamModel.php
+
 namespace App\Models;
+
 use App\Config\Database;
 
 class TeamModel extends Model
@@ -10,7 +11,9 @@ class TeamModel extends Model
     public function __construct()
     {
         $this->db = (new Database())->getInstance();
+        $this->setTable('FootballTeams');
     }
+
     public function createTeam(array $data)
     {
         return $this->create($data);

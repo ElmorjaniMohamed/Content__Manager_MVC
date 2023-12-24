@@ -1,7 +1,7 @@
 <?php
 class Router
 {
-    private $controller = 'App\Controllers\TeamController';
+    private $controller = 'App\Controllers\HomeController';
     private $method = 'index';
     private $param = array();
 
@@ -21,8 +21,10 @@ class Router
     {
         $uri = $_SERVER['REQUEST_URI'];
         $uri = explode('/', trim(strtolower($uri), '/'));
-        
-        if (isset($uri[0])) {
+        $a= array_splice($uri,0,1);
+        // var_dump($uri);
+
+        if (!empty($uri[0])) {
             $controllerName = ucwords($uri[0]) . 'Controller';
             $controller = 'App\Controllers\\' . $controllerName;
 
