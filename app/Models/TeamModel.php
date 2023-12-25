@@ -11,7 +11,7 @@ class TeamModel extends Model
     public function __construct()
     {
         $this->db = (new Database())->getInstance();
-        $this->setTable('FootballTeams');
+        $this->setTable('footballteams');
     }
 
     public function createTeam(array $data)
@@ -34,18 +34,30 @@ class TeamModel extends Model
         return $this->delete($id);
     }
 
-    public function getTeamByName($name)
+    public function getAllTeams()
+    {
+        $query = "SELECT * FROM " . $this->getTableName();
+        $statement = $this->db->prepare($query);
+        $statement->execute();
+
+        $teams = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $teams;
+    }
+    public function getTeamById($teamId)
     {
         try {
-            $query = "SELECT * FROM FootballTeams WHERE name = :name";
-            $stmt = $this->db->prepare($query);
-            $stmt->bindParam(':name', $name, \PDO::PARAM_STR);
+            $stmt = $this->db->prepare("SELECT * FROM footballteams WHERE id = :id");
+            $stmt->bindParam(':id', $teamId, \PDO::PARAM_INT);
             $stmt->execute();
 
-            return $stmt->fetch(\PDO::FETCH_ASSOC);
+            $teamDetails = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+            return $teamDetails ? $teamDetails : null;
         } catch (\PDOException $e) {
-            // Vous pouvez gérer les erreurs de base de données ici
-            return null;
+            throw new \Exception('Error fetching team details: ' . $e->getMessage());
         }
     }
+
+
 }

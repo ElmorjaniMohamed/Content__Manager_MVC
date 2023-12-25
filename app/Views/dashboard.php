@@ -1,5 +1,13 @@
 <?php include 'templates/header.php'; ?>
 
+<?php
+use App\Models\TeamModel;
+
+$teamModel = new TeamModel();
+$teams = $teamModel->getAllTeams();
+?>
+
+
 <body class="font-poppins dark:bg-gray-900 text-mainBlue dark:text-white">
     <section class="flex flex-row">
         <?php include 'templates/sideBar.php'; ?>
@@ -150,8 +158,7 @@
                     </thead>
                     <tbody class=" divide-y divide-gray-200">
 
-                        <?php 
-                         $teams = $teams ?? [];
+                        <?php
                         foreach ($teams as $team): ?>
 
                             <tr>
@@ -173,21 +180,22 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <?= $team['total_players']; ?>
                                 </td>
-                                <td class="flex flex-row px-6 py-4 whitespace-nowrap">
+                                <td class="flex flex-row items-center pl-6 py-4 whitespace-nowrap">
                                     <div>
-                                        <form method="get">
-                                            <button type="button" id="open-modal"
+                                        <a href="team/edit/<?=$team['id']?>">
+                                            <button type="submit"
                                                 class="ml-2 px-4 py-2 font-medium text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:shadow-outline-red active:bg-green-600 transition duration-150 ease-in-out">
-                                                <a href="">Edit</a>
+                                                Edit
                                             </button>
-                                        </form>
+                        </a>
                                     </div>
-                                    <form method="get">
-                                        <button type="button" onclick="return confirmDelete()"
+                                    <form method="post" action="team/delete/<?= $team['id']; ?>" onsubmit="return confirmDelete()">
+                                        <button type="submit"
                                             class="ml-2 px-4 py-2 font-medium text-white bg-red-400 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out">
-                                            <a href="">Delete</a>
+                                            Delete
                                         </button>
                                     </form>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>

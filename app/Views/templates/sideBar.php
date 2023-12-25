@@ -1,5 +1,5 @@
 <side
-            class="hidden md:block dark:bg-indigo-950 dark:border-none text-base rounded-3xl w-[25%] h-full py-[1%] px-[1%]  border">
+            class="hidden md:block dark:bg-indigo-950 dark:border-none text-base rounded-3xl w-[25%] py-[1%] px-[1%]  border">
             <div id="logo" class="flex items-center justify-center pb-10 pt-4">
                 <a href="<?= $_ENV['APP_URL'] . "/dashboard" ?>" class="flex ml-2 gap-2 items-center justify-center">
                     <!-- Logo -->
@@ -57,7 +57,7 @@
                             class="text-yellow-300 font-extrabold text-3xl pr-1/2">S</span>tadiumStream</span>
                 </a>
             </div>
-            <ul class=" ml-[2%] mb-[10%] text-lg">
+            <ul class=" space-y-3 ml-[2%] mb-[10%] text-lg ">
                 <li>
                     <a href="#"
                         class="flex items-center p-2 text-purple-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-purple-600 group">
@@ -71,6 +71,7 @@
                         <span class="ms-3">Dashboard</span>
                     </a>
                 </li>
+                <hr>
                 <li>
                     <a href="#"
                         class="flex items-center p-2 text--900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-purple-600 group">
@@ -83,6 +84,7 @@
                         <span class="flex-1 ms-3 whitespace-nowrap">Teams</span>
                     </a>
                 </li>
+                <hr>
                 <li>
                     <a href="#"
                         class="flex items-center p-2 text-yellow-300 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-purple-600 group">
@@ -94,6 +96,7 @@
                         <span class="flex-1 ms-3 whitespace-nowrap">Sign In</span>
                     </a>
                 </li>
+                <hr>
                 <li>
                     <a href="#"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100  dark:hover:bg-purple-600 group">

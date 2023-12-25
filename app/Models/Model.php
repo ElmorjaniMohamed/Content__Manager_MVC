@@ -18,6 +18,10 @@ class Model
     {
         $this->table = $table;
     }
+    public function getTableName()
+    {
+        return $this->table;
+    }
 
     public function create(array $data)
     {

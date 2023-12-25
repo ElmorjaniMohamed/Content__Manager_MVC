@@ -43,9 +43,9 @@
 
 <script>
     function confirmDelete() {
-        var confirmation = confirm(`Are you sure you want to delete this employee?`);
-        return confirmation;
+        return confirm("Êtes-vous sûr de vouloir supprimer cette équipe ?");
     }
 </script>
+
 
 </html>
